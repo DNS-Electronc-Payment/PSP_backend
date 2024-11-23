@@ -1,8 +1,10 @@
 package com.project.PSP_backend.models;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class PaymentRequest {
+    private long customerId;
     private String merchantId;
     private String merchantPassword;
     private double amount;
@@ -11,8 +13,10 @@ public class PaymentRequest {
     private String failedUrl;
     private String errorUrl;
     private String timestamp;
+    private LocalDateTime sendingTime;
 
-    public PaymentRequest(double amount) {
+    public PaymentRequest(long customerId, double amount) {
+        this.customerId = customerId;
         this.merchantId = UUID.randomUUID().toString();
         this.merchantPassword = UUID.randomUUID().toString();
         this.amount = amount;
@@ -20,6 +24,23 @@ public class PaymentRequest {
         this.successUrl = ""; //postaviti naknadno sva tri URL-a
         this.failedUrl = "";
         this.errorUrl = "";
+        this.sendingTime = LocalDateTime.now();
+    }
+
+    public long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(long customerId) {
+        this.customerId = customerId;
+    }
+
+    public LocalDateTime getSendingTime() {
+        return sendingTime;
+    }
+
+    public void setSendingTime(LocalDateTime sendingTime) {
+        this.sendingTime = sendingTime;
     }
 
     public String getMerchantId() {

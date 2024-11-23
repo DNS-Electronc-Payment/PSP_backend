@@ -24,10 +24,9 @@ public class PaymentController {
     //poziva Web Shop API CLienta kome prosljedjuje parametar amount
     //Web Shop API Client gadja ovu metodu u PSP aplikaciji
     //PSP nema ni front, ni bazu podataka
-    @PostMapping("/credit-card-payment/{amount}/{userId}")
-    public void processCreditCardPayment(@PathVariable double amount,@PathVariable Integer userId) {
-        System.out.println("Processing payment  amount " + amount + " and userId: " +userId );
-        PaymentRequest paymentRequest = new PaymentRequest(amount);
+    @PostMapping("/credit-card-payment/{amount}/{customerId}")
+    public void processCreditCardPayment(@PathVariable double amount, @PathVariable long customerId) {
+        PaymentRequest paymentRequest = new PaymentRequest(customerId, amount);
         //Pozivamo APIClient za kontakt sa bankom
         apiClient.sendPaymentRequest(paymentRequest);
     }
