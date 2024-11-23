@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class PaymentRequest {
+
+    private long id;
     private long customerId;
     private String merchantId;
     private String merchantPassword;
@@ -14,6 +16,8 @@ public class PaymentRequest {
     private String errorUrl;
     private String timestamp;
     private LocalDateTime sendingTime;
+    private long paymentId;
+    private String paymentUrl;
 
     public PaymentRequest(long customerId, double amount) {
         this.customerId = customerId;
@@ -25,6 +29,32 @@ public class PaymentRequest {
         this.failedUrl = "";
         this.errorUrl = "";
         this.sendingTime = LocalDateTime.now();
+        this.paymentId = -1L;
+        this.paymentUrl = "";
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public long getPaymentId() {
+        return paymentId;
+    }
+
+    public void setPaymentId(long paymentId) {
+        this.paymentId = paymentId;
+    }
+
+    public String getPaymentUrl() {
+        return paymentUrl;
+    }
+
+    public void setPaymentUrl(String paymentUrl) {
+        this.paymentUrl = paymentUrl;
     }
 
     public long getCustomerId() {
