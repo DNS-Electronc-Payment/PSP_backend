@@ -3,6 +3,7 @@ package com.project.PSP_backend.controllers;
 import com.project.PSP_backend.clients.APIClient;
 import com.project.PSP_backend.models.BankResponse;
 import com.project.PSP_backend.models.PaymentRequest;
+import com.project.PSP_backend.models.TransactionResult;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -36,6 +37,12 @@ public class PaymentController {
     @PostMapping("/response-to-credit-card-payment")
     public void response(@RequestBody BankResponse bankResponse) {
         apiClient.sendPaymentResponse(bankResponse);
+    }
+
+    @PostMapping("/transactionResult")
+    public void transactionResult(@RequestBody TransactionResult transactionResult){
+    apiClient.sendTransactionResult(transactionResult);
+
     }
 }
 
