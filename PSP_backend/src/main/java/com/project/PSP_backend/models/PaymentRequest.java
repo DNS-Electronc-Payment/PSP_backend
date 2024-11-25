@@ -7,7 +7,7 @@ public class PaymentRequest {
 
     private long id;
     private long customerId;
-    private String merchantId;
+    private long merchantId;
     private String merchantPassword;
     private double amount;
     private String merchantOrderId;
@@ -21,7 +21,7 @@ public class PaymentRequest {
 
     public PaymentRequest(long customerId, double amount) {
         this.customerId = customerId;
-        this.merchantId = UUID.randomUUID().toString();
+        this.merchantId = getMerchantId(customerId); //ID prodavca
         this.merchantPassword = UUID.randomUUID().toString();
         this.amount = amount;
         this.merchantOrderId = UUID.randomUUID().toString();
@@ -31,6 +31,11 @@ public class PaymentRequest {
         this.sendingTime = LocalDateTime.now();
         this.paymentId = -1L;
         this.paymentUrl = "";
+    }
+
+    private long getMerchantId(long userId) {
+        int rest = (int) (userId % 2);
+        return rest == 0 ? 1 : 2;
     }
 
     public long getId() {
@@ -73,11 +78,11 @@ public class PaymentRequest {
         this.sendingTime = sendingTime;
     }
 
-    public String getMerchantId() {
+    public long getMerchantId() {
         return merchantId;
     }
 
-    public void setMerchantId(String merchantId) {
+    public void setMerchantId(long merchantId) {
         this.merchantId = merchantId;
     }
 
