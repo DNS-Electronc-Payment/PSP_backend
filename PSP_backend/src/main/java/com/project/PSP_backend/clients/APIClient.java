@@ -23,10 +23,18 @@ public class APIClient {
 
     public void sendPaymentResponse(BankResponse bankResponse) {
         //REST poziv prema Web Shop-u: vraca se odgovor o uspjesnom/neuspjesnom placanju
+
+        String url = "https://localhost:8080/api/response/bankResponse" ;
+
+        restTemplate.postForEntity(url, bankResponse, Void.class);
     }
 
     public void sendTransactionResult(TransactionResult transactionResult){
         //zahtjev ka webshopu
+
+        String url = "https://localhost:8080/api/response/transactionResult" ;
+
+        restTemplate.postForEntity(url, transactionResult, Void.class);
     }
 }
 
