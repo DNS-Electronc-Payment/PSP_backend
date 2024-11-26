@@ -13,10 +13,16 @@ public class APIClient {
     @Autowired
     private RestTemplate restTemplate;
     public void sendPaymentRequest(PaymentRequest paymentRequest) {
+
         //REST poziv prema Bank Acquirer-u: kreiranje zahtjeva za PaymentUrl i PaymentId
+        System.out.println(paymentRequest.getAmount());
+        System.out.println(paymentRequest.getCustomerId());
+        System.out.println(paymentRequest.getMerchantId());
         String url = "https://localhost:8082/api/bankAccount/send-payment-request" ;
 
         restTemplate.postForEntity(url, paymentRequest, Void.class);
+
+
 
 
     }

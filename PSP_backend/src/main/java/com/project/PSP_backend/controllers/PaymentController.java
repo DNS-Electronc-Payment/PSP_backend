@@ -1,6 +1,7 @@
 package com.project.PSP_backend.controllers;
 
 import com.project.PSP_backend.clients.APIClient;
+import com.project.PSP_backend.dto.PaymentDataDTO;
 import com.project.PSP_backend.models.BankResponse;
 import com.project.PSP_backend.models.PaymentRequest;
 import com.project.PSP_backend.models.TransactionResult;
@@ -25,9 +26,10 @@ public class PaymentController {
     //poziva Web Shop API CLienta kome prosljedjuje parametar amount
     //Web Shop API Client gadja ovu metodu u PSP aplikaciji
     //PSP nema ni front, ni bazu podataka
-    @PostMapping("/credit-card-payment/{amount}/{customerId}")
-    public void processCreditCardPayment(@PathVariable double amount, @PathVariable long customerId) {
-        PaymentRequest paymentRequest = new PaymentRequest(customerId, amount);
+    @PostMapping("/credit-card-payment")
+    public void processCreditCardPayment(@RequestBody PaymentDataDTO dataDTO) {
+        System.out.println(dataDTO);
+        PaymentRequest paymentRequest = new PaymentRequest(dataDTO.getUserId(), dataDTO.getPrice());
         //Pozivamo APIClient za kontakt sa bankom
         apiClient.sendPaymentRequest(paymentRequest);
     }

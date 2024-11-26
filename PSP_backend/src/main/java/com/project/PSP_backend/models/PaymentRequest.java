@@ -1,8 +1,11 @@
 package com.project.PSP_backend.models;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class PaymentRequest {
 
     private long id;
@@ -15,7 +18,6 @@ public class PaymentRequest {
     private String failedUrl;
     private String errorUrl;
     private String timestamp;
-    private LocalDateTime sendingTime;
     private long paymentId;
     private String paymentUrl;
 
@@ -25,17 +27,17 @@ public class PaymentRequest {
         this.merchantPassword = UUID.randomUUID().toString();
         this.amount = amount;
         this.merchantOrderId = UUID.randomUUID().toString();
-        this.successUrl = ""; //postaviti naknadno sva tri URL-a
-        this.failedUrl = "";
-        this.errorUrl = "";
-        this.sendingTime = LocalDateTime.now();
+        this.timestamp = UUID.randomUUID().toString();
+        this.successUrl = "url"; //postaviti naknadno sva tri URL-a
+        this.failedUrl = "url";
+        this.errorUrl = "url";
         this.paymentId = -1L;
         this.paymentUrl = "";
     }
 
     private long getMerchantId(long userId) {
         int rest = (int) (userId % 2);
-        return rest == 0 ? 1 : 2;
+        return rest == 0 ? 1000 : 2000;
     }
 
     public long getId() {
@@ -68,14 +70,6 @@ public class PaymentRequest {
 
     public void setCustomerId(long customerId) {
         this.customerId = customerId;
-    }
-
-    public LocalDateTime getSendingTime() {
-        return sendingTime;
-    }
-
-    public void setSendingTime(LocalDateTime sendingTime) {
-        this.sendingTime = sendingTime;
     }
 
     public long getMerchantId() {
