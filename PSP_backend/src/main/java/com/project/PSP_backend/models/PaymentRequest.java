@@ -28,9 +28,9 @@ public class PaymentRequest {
         this.amount = amount;
         this.merchantOrderId = UUID.randomUUID().toString();
         this.timestamp = UUID.randomUUID().toString();
-        this.successUrl = "url"; //postaviti naknadno sva tri URL-a
-        this.failedUrl = "url";
-        this.errorUrl = "url";
+        this.successUrl = "http://localhost:4200/success"; //postaviti naknadno sva tri URL-a
+        this.failedUrl = "http://localhost:4200/failed";
+        this.errorUrl = "http://localhost:4200/error";
         this.paymentId = -1L;
         this.paymentUrl = "";
     }
