@@ -39,7 +39,7 @@ public class APIClient {
         //zahtjev ka webshopu
 
         String url = "https://localhost:8080/api/response/transactionResult" ;
-
+        System.out.println("TRANSAKCIJAA");
         restTemplate.postForEntity(url, transactionResult, Void.class);
     }
 }
